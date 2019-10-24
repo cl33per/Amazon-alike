@@ -1,51 +1,11 @@
 id,product_name,department_name,price,stock_quantity
-1,Wine - Delicato Merlot,Kids,6.63,15
-2,Soup - French Can Pea,Beauty,5.09,85
-3,Creamers - 10%,Games,3.17,24
-4,Tofu - Soft,Games,6.00,79
-5,Wine - Sicilia Igt Nero Avola,Shoes,2.59,72
-6,Creamers - 10%,Clothing,1.87,5
-7,"Nut - Pecan, Pieces",Shoes,4.05,22
-8,Pepper - Cayenne,Health,5.95,59
-9,"Wine - White, French Cross",Electronics,0.08,83
-10,"Cheese - Brie,danish",Baby,0.69,4
-11,Milk 2% 500 Ml,Kids,6.44,5
-12,"Yogurt - Banana, 175 Gr",Baby,1.72,45
-13,Bread - English Muffin,Automotive,0.26,86
-14,Bread - Bistro White,Health,1.49,42
-15,Nantucket Cranberry Juice,Home,7.27,48
-16,Bread Base - Italian,Grocery,9.14,70
-17,Nantucket - Pomegranate Pear,Industrial,6.48,62
-18,Pepper - Green,Movies,2.24,93
-19,Butter Sweet,Automotive,2.91,91
-20,"Pasta - Spaghetti, Dry",Tools,6.30,57
-21,"Beef - Roasted, Cooked",Clothing,1.46,33
-22,Dragon Fruit,Computers,4.12,29
-23,Foil Wrap,Garden,4.33,51
-24,"Beef - Bones, Marrow",Clothing,4.93,91
-25,"Oil - Shortening,liqud, Fry",Tools,7.90,86
-26,Oranges,Movies,6.67,61
-27,Muffin - Mix - Strawberry Rhubarb,Grocery,7.06,24
-28,Pastry - Butterscotch Baked,Movies,8.36,29
-29,Water Chestnut - Canned,Books,7.84,99
-30,Beef Tenderloin Aaa,Games,7.41,97
-31,Cheese - Fontina,Garden,4.50,23
-32,Horseradish - Prepared,Computers,5.46,42
-33,Wine - Trimbach Pinot Blanc,Tools,0.99,99
-34,Wine - Barossa Valley Estate,Beauty,2.62,82
-35,"Shrimp - 16/20, Iqf, Shell On",Kids,2.57,91
-36,Lid Coffeecup 12oz D9542b,Kids,8.21,27
-37,"Lettuce - Romaine, Heart",Industrial,1.88,61
-38,Papayas,Shoes,2.94,77
-39,"Wine - Mas Chicet Rose, Vintage",Kids,0.49,44
-40,Cranberry Foccacia,Computers,8.76,32
-41,"Lamb - Whole Head Off,nz",Electronics,1.58,13
-42,Butter - Salted,Music,5.59,4
-43,Salad Dressing,Health,7.67,87
-44,Breadfruit,Baby,6.35,53
-45,Chocolate Bar - Smarties,Toys,6.38,21
-46,"Nut - Walnut, Chopped",Toys,4.24,8
-47,Lid Coffee Cup 8oz Blk,Automotive,2.54,32
-48,Chevere Logs,Music,0.01,57
-49,Vinegar - Rice,Shoes,2.05,74
-50,Stainless Steel Cleaner Vision,Computers,5.47,17
+1,Food Colouring - Pink,Garden,2.77,72
+2,Compound - Rum,Baby,1.84,10
+3,Venison - Denver Leg Boneless,Music,9.77,5
+4,Rootbeer,Shoes,5.20,10
+5,Croissants Thaw And Serve,Outdoors,5.18,98
+6,"Vodka - Hot, Lnferno",Books,0.35,69
+7,Bagelers - Cinn / Brown Sugar,Shoes,3.74,73
+8,Prunes - Pitted,Electronics,8.38,7
+9,Pernod,Health,9.06,73
+10,Coconut - Whole,Music,4.39,8
