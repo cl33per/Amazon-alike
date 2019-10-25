@@ -1,19 +1,17 @@
-//Used to connect to the sql database and queries
+var inventoryPortal = require('./bamazonCustomer.js')
 var mysql = require('mysql');
-//Used to asking questions and take in input
 var inquirer = require('inquirer');
-//Packages used to for better UI on terminal  
 var cli = require('pixl-cli');
-const chalk = require('chalk');
+var chalk = require('chalk');
+// Connection variable with settings -- change password localhost root if testing on different envirorment
 
 
-
-function amazonPortalStart(){
+function mainMenu(){
     inquirer
         .prompt({
             name: "action",
             type: "list",
-            message: chalk.green("Welcome to the Amazon-alike Iventory Portal. \nChoose a option below:"),
+            message: chalk.green("Welcome to the Amazon-alike: MAIN MENU. \nChoose a option below:"),
             choices: [
                 "Customer View",
                 "Manager View",
@@ -23,24 +21,18 @@ function amazonPortalStart(){
         }).then(function (answer) {
             switch (answer.action) {
                 case "Customer View":
-                    var Connection = require('./bamazonCustomer.js');
-                Connection;
+                return inventoryPortal(connection);
+                case "Manager View":  
                     break;
-
-                case "Manager View":
-                    
+                case "Supervisor View": 
                     break;
-
-                case "Supervisor View":
-                    
-                    break;
-
                 case "Exit":
                     process.exit();
                     break;
             }
         });
     };
-    amazonPortalStart();
-    module.exports = amazonPortalStart;
+    //Start the fucntion to start the primary memu of the amazaon-alike interface
+    mainMenu();
+    module.exports = mainMenu
     
