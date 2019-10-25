@@ -22,11 +22,11 @@ var connection = mysql.createConnection({
     password: "ADU6pyNJ",
     database: "bamazon"
 });
-
 connection.connect(function (err) {
     if (err) throw err;
     startIventoryPortal()
 });
+
 
 function startIventoryPortal() {
     inquirer
@@ -35,13 +35,13 @@ function startIventoryPortal() {
             type: "list",
             message: chalk.green("Welcome to the Amazon-alike Iventory Portal. \nChoose a option below:"),
             choices: [
-                "View Current Inventory",
+                "View Availible Products",
                 "Place an Order",
                 "Exit"
             ]
         }).then(function (answer) {
             switch (answer.action) {
-                case "View Current Inventory":
+                case "View Availible Products":
                     customerView();
                     break;
 
@@ -50,7 +50,8 @@ function startIventoryPortal() {
                     break;
 
                 case "Exit":
-                    connection.end();
+                    var mainPortal = require('./amazonportal.js');
+                    mainPortal;
                     break;
             }
         });
@@ -81,7 +82,7 @@ function customerView() {
         );
         productInfo = []
         startIventoryPortal();
-        
+
     });
 };
 
@@ -144,3 +145,4 @@ function updateProduct(answers, res) {
         );
     };
 };
+module.exports = startIventoryPortal;
