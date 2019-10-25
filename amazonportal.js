@@ -1,33 +1,49 @@
 var inventoryPortal = require('./bamazonCustomer.js')
+var mangerPortal = require("./bamazonManager.js")
 var mysql = require('mysql');
 var inquirer = require('inquirer');
 var cli = require('pixl-cli');
-var chalk = require('chalk');
+const chalk = require('chalk');
 // Connection variable with settings -- change password localhost root if testing on different envirorment
 
-console.log("\n\n\n\n\n\n\n\n\n");
 
-var connection = mysql.createConnection({ host: "localhost", port: 3306, user: "root", password: "hokxan9Mysql", database: "bamazon" });
+var connection = mysql.createConnection({
+    host: "localhost",
+    port: 3306,
+    user: "root",
+    password: "ADU6pyNJ",
+    database: "bamazon"
+});
+
 connection.connect(function (err) {
     ifThrow(err);
     return mainMenu(connection)
 });
 
-
 function mainMenu() {
     return inquirer.prompt({
+
         name: "action",
         type: "list",
-        message: chalk.green("Welcome to the Amazon-alike: MAIN MENU. \nChoose a option below:"),
+        message: chalk.red.bold("Welcome to the Amazon-alike: MAIN MENU. \nChoose a option below:"),
         choices: ["Customer View", "Manager View", "Supervisor View", "Exit"]
     }).then(function (answer) {
         switch (answer.action) {
+
             case "Customer View":
                 return inventoryPortal().then(mainMenu);
             case "Manager View":
                 return mainMenu();
             case "Supervisor View":
                 return mainMenu();
+
+            case "Customer View": inventoryPortal(connection, mainMenu);
+                break;
+            case "Manager View": mangerPortal(connection, mainMenu);
+                break;
+            case "Supervisor View": mainMenu(connection);
+                break;
+
             case "Exit":
                 process.exit();
             default:

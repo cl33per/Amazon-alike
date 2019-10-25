@@ -10,7 +10,7 @@ function inventoryPortal() {
         name: "action",
         type: "list",
         message: chalk.green("WELCOME TO THE CUSTOMER VIEW. \nChoose a option below:"),
-        choices: ["View Availible Products", "Place an Order", "Exit"]
+        choices: ["View Availible Products", "Place an Order", "Exit Submenu"]
     }).then(function (answer) {
         switch (answer.action) {
             case "View Availible Products":
@@ -19,16 +19,18 @@ function inventoryPortal() {
             case "Place an Order":
                 return idSearch().then(() => inventoryPortal());
                 break;
-            case "Exit":
+            case "Exit Submenu":
                 return mainMenu();
                 break;
         }
     });
 };
 
+
 function customerView() {
     return new Promise(resolve => connection.query("SELECT * FROM products", function (err, res) {
         ifThrow(err);
+
         // Log all results of the SELECT statement. By interating through this cleans the data for the cli.table package
         for (var i = 0; i < res.length; i++) { // console.log(res[i].id);
             productInfo.push([
