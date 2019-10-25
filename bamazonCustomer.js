@@ -1,14 +1,12 @@
-var  {connection ,mainMenu} = require("./amazonportal.js");
-var mysql = require('mysql');
+var mainMenu = require('./bamazonCustomer.js');
 var inquirer = require('inquirer');
 var cli = require('pixl-cli');
 var chalk = require('chalk');
 // Empty arry for product table view cli
 var productInfo = [];
 
-
 // Prompt for customerView Inventory menu
-function inventoryPortal() {
+function inventoryPortal(connection) {
     inquirer
         .prompt({
             name: "action",
@@ -22,19 +20,18 @@ function inventoryPortal() {
         }).then(function (answer) {
             switch (answer.action) {
                 case "View Availible Products":
-                    customerView();
+                    customerView(connection);
                     break;
                 case "Place an Order":
-                    idSearch();
+                    idSearch(connection);
                     break;
                 case "Exit":
-                    return mainMenu();
-                    // process.exit();
+                    return mainMenu(connection);
             }
         });
 };
 
-function customerView() {
+function customerView(connection) {
     connection.query("SELECT * FROM products", function (err, res) {
         if (err) throw err;
         // Log all results of the SELECT statement. By interating through this cleans the data for the cli.table package
@@ -58,12 +55,12 @@ function customerView() {
             cli.table(rows) + "\n"
         );
         productInfo = []
-        inventoryPortal();
+        inventoryPortal(connection);
 
     });
 };
 
-function idSearch() {
+function idSearch(connection) {
     inquirer.prompt([{
             name: 'id',
             message: 'Enter the ID:',
