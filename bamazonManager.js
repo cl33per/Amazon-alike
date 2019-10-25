@@ -2,14 +2,10 @@ var inquirer = require("inquirer");
 var cli = require("pixl-cli");
 var chalk = require("chalk");
 var productInfo = [];
-var mainMenu;
-var connection;
 
-function managerPortal(theConnection, theMainMenu) {
-    mainMenu = mainMenu || theMainMenu;
-    connection = connection || theConnection;
-    inquirer
-        .prompt({
+
+function managerPortal() {
+    return inquirer.prompt({
             name: "action",
             type: "list",
             message: chalk.blue(
@@ -26,16 +22,16 @@ function managerPortal(theConnection, theMainMenu) {
         .then(function (answer) {
             switch (answer.action) {
                 case "View Products for Sale":
-                    inventoryView();
+                    inventoryView().then(() => managerPortal());
                     break;
                 case "View Low Inventory":
-                    inventoryLowView();
+                    inventoryLowView().then(() => managerPortal());
                     break;
                 case "Add to Inventory":
-                    invetoryAddView();
+                    invetoryAddView().then(() => managerPortal());
                     break;
                 case "Add New Product":
-                    createProduct();
+                    createProduct().then(() => managerPortal());
                     break;
                 case "Exit Submenu":
                     mainMenu();
@@ -44,11 +40,11 @@ function managerPortal(theConnection, theMainMenu) {
 }
 
 function inventoryView() {
-    connection.query("SELECT * FROM products", function (err, res) {
-        if (err) throw err;
+    return new Promise(resolve => connection.query("SELECT * FROM products", function (err, res) {
+        ifThrow(err);
+
         // Log all results of the SELECT statement. By interating through this cleans the data for the cli.table package
         for (var i = 0; i < res.length; i++) {
-            // console.log(res[i].id);
             productInfo.push([
                 res[i].id,
                 res[i].product_name,
@@ -63,19 +59,18 @@ function inventoryView() {
             ...productInfo
         ];
         // Prints the inventory in a table format.
+        console.log("\n")
         cli.print(cli.table(rows) + "\n");
+        console.log("\n")
         productInfo = [];
-        managerPortal();
-    });
+        resolve();
+    }));
 }
 
 function inventoryLowView() {
     console.log("low inventory");
-    connection.query("SELECT * FROM products WHERE stock_quantity < 5", function (
-        err,
-        res
-    ) {
-        if (err) throw err;
+    return new Promise(resolve => connection.query("SELECT * FROM products WHERE stock_quantity < 5", function (err, res) {
+        ifThrow(err);
         for (var i = 0; i < res.length; i++) {
             productInfo.push([
                 res[i].id,
@@ -91,10 +86,12 @@ function inventoryLowView() {
             ...productInfo
         ];
         // Prints the inventory in a table format.
+        console.log("\n")
         cli.print(cli.table(rows) + "\n");
+        console.log("\n")
         productInfo = [];
-        managerPortal();
-    });
+        resolve();
+    }));
 }
 
 function invetoryAddView() {
@@ -102,7 +99,7 @@ function invetoryAddView() {
 }
 
 function createProduct() {
-    inquirer.prompt([{
+    return inquirer.prompt([{
             name: "item",
             type: "input",
             message: "Product Name"
@@ -113,30 +110,33 @@ function createProduct() {
             message: "What Department?"
         },
         {
-            name: "price",           
+            name: "price",
             message: "What's the price of the product?",
             validate: function (value) {
                 if (isNaN(value) === false && parseInt(value) > 0 && parseInt(value) <= 100) {
                     return true;
                 }
-                console.log(chalk.red.bold(" ID Must be a number"));
+                console.log("\n")
+                cli.print(cli.box("\n" + chalk.red.bold(" Price Must be a number") + "\n"));
+                console.log("\n")
                 return false;
             }
         },
         {
-            name: "stock",            
+            name: "stock",
             message: "What's the quanity?",
             validate: function (value) {
                 if (isNaN(value) === false && parseInt(value) > 0 && parseInt(value) <= 100) {
                     return true;
                 }
-                console.log(chalk.red.bold(" ID Must be a number"));
+                console.log("\n")
+                cli.print(cli.box("\n" + chalk.red.bold(" stock Must be a number") + "\n"));
+                console.log("\n")
                 return false;
             }
         },
     ]).then(function (answer) {
-        connection.query("INSERT INTO products SET ?", 
-            {
+            return new Promise(resolve => connection.query("INSERT INTO products SET ?", {
                 product_name: answer.item,
                 department_name: answer.department,
                 price: answer.price,
@@ -144,16 +144,14 @@ function createProduct() {
                 // product_name: "rocky 1995",
                 // department_name: "movies",
                 // price: 5.95,
-                // stock_quantity: 3
-            },
-            function (err, res) {
-                if (err) throw err;
-                managerPortal();
-            }
-        );
-        console.log("\n")
-        cli.print(cli.box("\n" + answer.item + chalk.green(" Sucessfully Added")+"\n"))
-        console.log("\n")
-    });
-};
-module.exports = managerPortal;
+                // stock_quantity: 3,
+            }, function (err) {
+                ifThrow(err);           
+                console.log("\n");
+                cli.print(cli.box("\n" + answer.item + chalk.green(" Sucessfully Added") + "\n"));
+                console.log("\n");
+                resolve()
+            }));
+        });
+    };
+    module.exports = managerPortal;
