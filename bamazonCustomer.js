@@ -15,14 +15,14 @@ function inventoryPortal(theConnection, theMainMenu) {
         name: "action",
         type: "list",
         message: chalk.green("WELCOME TO THE CUSTOMER VIEW. \nChoose a option below:"),
-        choices: ["View Availible Products", "Place an Order", "Exit"]
+        choices: ["View Availible Products", "Place an Order", "Exit Submenu"]
     }).then(function (answer) {
         switch (answer.action) {
             case "View Availible Products": customerView();
                 break;
             case "Place an Order": idSearch();
                 break;
-            case "Exit": mainMenu();
+            case "Exit Submenu": mainMenu();
         }
     });
 };
