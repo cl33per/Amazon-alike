@@ -1,0 +1,25 @@
+{
+  "name": "amazon-like",
+  "version": "1.0.0",
+  "description": "![GitHub followers](https://img.shields.io/github/followers/cl33per?style=social) [![GitHub issues](https://img.shields.io/github/issues/cl33per/Amazon-like)](https://github.com/cl33per/Amazon-like/issues) [![GitHub](https://img.shields.io/github/license/cl33per/Amazon-like)](https://img.shields.io/github/license/cl33per/Amazon-like) ![GitHub top language](https://img.shields.io/github/languages/top/cl33per/Amazon-like) ![GitHub last commit](https://img.shields.io/github/last-commit/cl33per/Amazon-like)",
+  "main": "amazonportal.js",
+  "dependencies": {
+    "inquirer": "^7.0.0",
+    "mysql": "^2.17.1",
+    "pixl-cli": "^1.0.11"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cl33per/Amazon-like.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cl33per/Amazon-like/issues"
+  },
+  "homepage": "https://github.com/cl33per/Amazon-like#readme"
+}

@@ -5,8 +5,24 @@ var cli = require('pixl-cli');
 var chalk = require('chalk');
 // Connection variable with settings -- change password localhost root if testing on different envirorment
 
+var connection = mysql.createConnection({
+    host: "localhost",
 
-function mainMenu(){
+    // Your port; if not 3306
+    port: 3306,
+
+    // Your username
+    user: "root",
+
+    // Your password
+    password: "ADU6pyNJ",
+    database: "bamazon"
+});
+connection.connect(function (err) {
+    if (err) throw err;
+    mainMenu(connection)
+});
+function mainMenu(connection){
     inquirer
         .prompt({
             name: "action",
@@ -33,6 +49,5 @@ function mainMenu(){
         });
     };
     //Start the fucntion to start the primary memu of the amazaon-alike interface
-    mainMenu();
-    module.exports = mainMenu
+    module.exports = mainMenu;
     

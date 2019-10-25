@@ -1,4 +1,4 @@
-// var mainMenu = require("./amazonportal.js");
+var  {connection ,mainMenu} = require("./amazonportal.js");
 var mysql = require('mysql');
 var inquirer = require('inquirer');
 var cli = require('pixl-cli');
@@ -6,23 +6,6 @@ var chalk = require('chalk');
 // Empty arry for product table view cli
 var productInfo = [];
 
-var connection = mysql.createConnection({
-    host: "localhost",
-
-    // Your port; if not 3306
-    port: 3306,
-
-    // Your username
-    user: "root",
-
-    // Your password
-    password: "ADU6pyNJ",
-    database: "bamazon"
-});
-connection.connect(function (err) {
-    if (err) throw err;
-    inventoryPortal()
-});
 
 // Prompt for customerView Inventory menu
 function inventoryPortal() {
@@ -45,8 +28,8 @@ function inventoryPortal() {
                     idSearch();
                     break;
                 case "Exit":
-                    // return mainMenu();
-                    process.exit();
+                    return mainMenu();
+                    // process.exit();
             }
         });
 };
