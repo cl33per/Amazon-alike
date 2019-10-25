@@ -4,35 +4,31 @@ var chalk = require('chalk');
 // Empty arry for product table view cli
 var productInfo = [];
 
-var mainMenu;
-var connection;
-
 // Prompt for customerView Inventory menu
-function inventoryPortal(theConnection, theMainMenu) {
-    mainMenu = mainMenu || theMainMenu;
-    connection = connection || theConnection;
-    inquirer.prompt({
+function inventoryPortal() {
+    return inquirer.prompt({
         name: "action",
         type: "list",
         message: chalk.green("WELCOME TO THE CUSTOMER VIEW. \nChoose a option below:"),
         choices: ["View Availible Products", "Place an Order", "Exit"]
     }).then(function (answer) {
         switch (answer.action) {
-            case "View Availible Products": customerView();
+            case "View Availible Products":
+                return customerView().then(() => inventoryPortal())
                 break;
-            case "Place an Order": idSearch();
+            case "Place an Order":
+                return idSearch().then(() => inventoryPortal());
                 break;
-            case "Exit": mainMenu();
+            case "Exit":
+                return mainMenu();
+                break;
         }
     });
 };
 
 function customerView() {
-    connection.query("SELECT * FROM products", function (err, res) {
-        if (err) 
-            throw err;
-        
-
+    return new Promise(resolve => connection.query("SELECT * FROM products", function (err, res) {
+        ifThrow(err);
         // Log all results of the SELECT statement. By interating through this cleans the data for the cli.table package
         for (var i = 0; i < res.length; i++) { // console.log(res[i].id);
             productInfo.push([
@@ -48,17 +44,17 @@ function customerView() {
             [
                 "ID", "Product", "Department", "Price", "Quantity"
             ],
-            ... productInfo
+            ...productInfo
         ];
         // Prints the inventory in a table format.
         cli.print(cli.table(rows) + "\n");
         productInfo = []
-        inventoryPortal();
-    });
+        resolve();
+    }));
 };
 
 function idSearch() {
-    inquirer.prompt([
+    return inquirer.prompt([
         {
             name: 'id',
             message: 'Enter the ID:',
@@ -81,14 +77,12 @@ function idSearch() {
             }
         }
     ]).then(function (answers) {
-        connection.query("SELECT * FROM products WHERE ?", {
+        return new Promise(resolve => connection.query("SELECT * FROM products WHERE ?", {
             id: answers.id
         }, function (err, res) {
-            if (err) {
-                throw err;
-            }
-            updateProduct(answers, res);
-        });
+            ifThrow(err);
+            updateProduct(answers, res).then(() => resolve());
+        }));
     });
 };
 
@@ -99,23 +93,20 @@ function updateProduct(answers, res) {
     // console.log(productInfo);
     if (newStock < 0) {
         console.log(chalk.red.bold("\n" + "Insufficient quantity!" + "\n"));
-        inventoryPortal()
+        return emptyPromise();
     } else {
-        connection.query("UPDATE products SET ? WHERE ?", [
+        return new Promise(resolve => connection.query("UPDATE products SET ? WHERE ?", [
             {
                 stock_quantity: newStock
             }, {
                 id: answers.id
             }
         ], function (err, res) {
-            if (err) 
-                throw err;
-            
-
+            ifThrow(err);
             console.log(res.affectedRows + " product updated!\n");
             productInfo = []
-            customerView();
-        });
+            resolve();
+        }));
     };
 };
 
