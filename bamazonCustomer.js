@@ -27,7 +27,7 @@ function inventoryPortal(theConnection, theMainMenu) {
     });
 };
 
-function customerView() {
+function customerView(connection) {
     connection.query("SELECT * FROM products", function (err, res) {
         if (err) 
             throw err;

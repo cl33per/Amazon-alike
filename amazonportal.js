@@ -3,7 +3,7 @@ var mangerPortal = require("./bamazonManager.js")
 var mysql = require('mysql');
 var inquirer = require('inquirer');
 var cli = require('pixl-cli');
-var chalk = require('chalk');
+const chalk = require('chalk');
 // Connection variable with settings -- change password localhost root if testing on different envirorment
 
 var connection = mysql.createConnection({
@@ -19,7 +19,6 @@ connection.connect(function (err) {
     }
     mainMenu(connection)
 });
-
 function mainMenu(connection) {
     inquirer.prompt({
         name: "action",
