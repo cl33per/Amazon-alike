@@ -1,18 +1,18 @@
-var inventoryPortal = require('./bamazonCustomer.js')
+var inventoryPortal = require('./bamazonCustomer.js');
 var mysql = require('mysql');
 var inquirer = require('inquirer');
 var cli = require('pixl-cli');
-var chalk = require('chalk');
+const chalk = require('chalk');
 // Connection variable with settings -- change password localhost root if testing on different envirorment
 
 var connection = mysql.createConnection({host: "localhost", port: 3306, user: "root", password: "hokxan9Mysql", database: "bamazon"});
+
 connection.connect(function (err) {
     if (err) {
         throw err
     }
     mainMenu(connection)
 });
-
 function mainMenu(connection) {
     inquirer.prompt({
         name: "action",
