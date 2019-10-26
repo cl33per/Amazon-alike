@@ -29,7 +29,7 @@ function managerPortal() {
                     return idSearch().then(() => managerPortal());
                     break;
                 case "Add New Product":
-                    return createProduct().then(() => managerPortal());
+                    return departmentrView().then(() => managerPortal());
                     break;
                 case "Exit Submenu":
                     return mainMenu();
@@ -64,10 +64,35 @@ function inventoryView() {
         resolve();
     }));
 }
-
+function departmentrView() {
+    cli.print(cli.box("Department Lengend:"))
+    return new Promise(resolve => connection.query("SELECT * from departments", function (err, res) {
+        ifThrow(err);
+        // Log all results of the SELECT statement. By interating through this cleans the data for the cli.table package
+        for (var i = 0; i < res.length; i++) {
+            productInfo.push([
+                res[i].department_id,
+                res[i].department_name
+            ]);
+        };
+        // Defines the columns and rows of the table
+        var rows = [
+            [
+                "ID", "Department Name"
+            ],
+            ...productInfo
+        ];
+        // Prints the inventory in a table format.
+        console.log("\n")
+        cli.print(cli.table(rows) + "\n");
+        console.log("\n")
+        productInfo = []
+        createProduct().then(() => resolve());
+    }));
+};
 function inventoryLowView() {
     console.log("low inventory");
-    return new Promise(resolve => connection.query("SELECT * FROM products WHERE stock_quantity < 5", function (err, res) {
+    return new Promise(resolve => connection.query("SELECT products.id,products.product_name, departments.department_name,products.price,products.stock_quantity FROM products LEFT JOIN departments ON departments.department_id = products.dep_id WHERE products.stock_quantity < 30", function (err, res) {
         ifThrow(err);
         for (var i = 0; i < res.length; i++) {
             productInfo.push([
@@ -155,8 +180,8 @@ function createProduct() {
         },
         {
             name: "department",
-            type: "input",
-            message: "What Department?"
+            type: "number",
+            message: "Department ID:"
         },
         {
             name: "price",
@@ -187,7 +212,7 @@ function createProduct() {
     ]).then(function (answer) {
         return new Promise(resolve => connection.query("INSERT INTO products SET ?", {
             product_name: answer.item,
-            department_name: answer.department,
+            dep_id: answer.department,
             price: answer.price,
             stock_quantity: answer.stock
         }, function (err) {

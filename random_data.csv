@@ -1,11 +1,11 @@
-id,product_name,department_name,price,stock_quantity
-1,Food Colouring - Pink,Garden,2.77,72
-2,Compound - Rum,Baby,1.84,10
-3,Venison - Denver Leg Boneless,Music,9.77,5
-4,Rootbeer,Shoes,5.20,10
-5,Croissants Thaw And Serve,Outdoors,5.18,98
-6,"Vodka - Hot, Lnferno",Books,0.35,69
-7,Bagelers - Cinn / Brown Sugar,Shoes,3.74,73
-8,Prunes - Pitted,Electronics,8.38,7
-9,Pernod,Health,9.06,73
-10,Coconut - Whole,Music,4.39,8
+product_name,price,stock_quantity,dep_id
+Food Colouring - Pink,2.77,72,1
+Compound - Rum,1.84,10,2
+Venison - Denver Leg Boneless,9.77,5,3
+Rootbeer,5.20,10,4
+Croissants Thaw And Serve,5.18,98,5
+"Vodka - Hot, Lnferno",0.35,69,6
+Bagelers - Cinn / Brown Sugar,3.74,73,7
+Prunes - Pitted,8.38,7,4
+Pernod,Health,9.06,73,9
+Coconut - Whole,4.39,8,10
