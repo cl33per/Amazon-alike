@@ -94,12 +94,15 @@ function idSearch() {
 function updateProduct(answers, res) {
     var oldStock = res[0].stock_quantity // 10
     var newStock = oldStock - answers.stock_quantity;
+    var productSales = answers.stock_quantity * res[0].price;
+
     if (newStock < 0) {
         cli.print(cli.box(chalk.red.bold("Insufficient quantity!\n Product not updated \n Returing to CUSTOMER MENU")) + "\n");
         return emptyPromise();
     } else {
         return new Promise(resolve => connection.query("UPDATE products SET ? WHERE ?", [{
-            stock_quantity: newStock
+            stock_quantity: newStock,
+            product_sales: productSales
         }, {
             id: answers.id
         }], function (err, res) {
