@@ -9,13 +9,41 @@
 
 Amazon-like is made to utilize MySQL, and node's inquirer package and take in orders from customers and deplete stock from the store's inventory. Amazaon-like can also track product sales across the store's departments and then provide a summary of the highest-grossing departments in the store.
 
+The start of the Amazon-like opens with three menu selection 
+`Customer View`
+`Manager View`
+`Supervisor View`
+`Exit`
+
+```mermaid
+graph LR
+A[Main Menu] --> B(Customer View)
+A --> C(Manager View)
+A --> D(Supervisor View)
+A --> Z(Exit Program)
+B-->E(View Availble Prodcuts)
+B-->F(Place an Order)
+B-->G(Exit Submenu)
+C-->E
+C-->I(View Low Inventory)
+C-->J(Add Inventory)
+C-->G
+D-->K(View Product Sales by Department)
+D-->L(Create New Department)
+D-->G(Exit Submenu)
+```
+
 ### Packages Used 
 mysql
+pixl-cli
+chalk
+inquirer
+
 ### Importnat before running
 
 Before running the program you need to install the packages. Specififcly mysql and inquirer. 
-
 Running `npm i` should do the trick!
+Then simply upload the sql scritps provided and can run a local enviorment
 
 ### Customer View
 
