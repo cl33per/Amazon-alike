@@ -28,7 +28,7 @@ function inventoryPortal() {
 
 
 function customerView() {
-    return new Promise(resolve => connection.query("SELECT * FROM products", function (err, res) {
+    return new Promise(resolve => connection.query("SELECT products.id,products.product_name, departments.department_name,products.price,products.stock_quantity FROM products LEFT JOIN departments ON departments.department_id = products.dep_id", function (err, res) {
         ifThrow(err);
         // Log all results of the SELECT statement. By interating through this cleans the data for the cli.table package
         for (var i = 0; i < res.length; i++) {

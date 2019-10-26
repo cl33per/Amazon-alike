@@ -1,6 +1,7 @@
 var inquirer = require("inquirer");
 var cli = require("pixl-cli");
 var chalk = require("chalk");
+
 function supervisorPortal() {
     return inquirer.prompt({
         name: "action",
@@ -29,7 +30,7 @@ function supervisorPortal() {
 }
 
 function salesByDepartment(){
-    return new Promise(resolve => connection.query("SELECT * FROM products", function (err, res) {
+    return new Promise(resolve => connection.query("SELECT * FROM departments GROUP BY department_name", function (err, res) {
         ifThrow(err);
         // Log all results of the SELECT statement. By interating through this cleans the data for the cli.table package
         for (var i = 0; i < res.length; i++) {
