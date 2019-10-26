@@ -34,7 +34,7 @@ function mainMenu() {
             case "Manager View":
                 return mangerPortal().then(mainMenu);
             case "Supervisor View":
-                return mainMenu();
+                return supervisorPortal().then(mainMenu);
             case "Exit":
                 process.exit();
             default:
