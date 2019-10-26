@@ -22,10 +22,9 @@ connection.connect(function (err) {
 
 function mainMenu() {
     return inquirer.prompt({
-
         name: "action",
         type: "list",
-        message: chalk.red.bold("Welcome to the Amazon-alike: MAIN MENU. \nChoose a option below:"),
+        message: cli.print(cli.box(cli.center(chalk.red.bold("Welcome to the Amazon-alike: \nMAIN MENU."))) + "\n"),
         choices: ["Customer View", "Manager View", "Supervisor View", "Exit"]
     }).then(function (answer) {
         switch (answer.action) {

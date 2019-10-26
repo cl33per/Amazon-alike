@@ -9,7 +9,7 @@ function inventoryPortal() {
     return inquirer.prompt({
         name: "action",
         type: "list",
-        message: chalk.green("WELCOME TO THE CUSTOMER VIEW. \nChoose a option below:"),
+        message: cli.print(cli.box(cli.center(chalk.blue.bold("Welcome to the Amazon-alike: \nCUSTOMER MENU."))) + "\n"),
         choices: ["View Availible Products", "Place an Order", "Exit Submenu"]
     }).then(function (answer) {
         switch (answer.action) {
@@ -30,7 +30,6 @@ function inventoryPortal() {
 function customerView() {
     return new Promise(resolve => connection.query("SELECT * FROM products", function (err, res) {
         ifThrow(err);
-
         // Log all results of the SELECT statement. By interating through this cleans the data for the cli.table package
         for (var i = 0; i < res.length; i++) {
             productInfo.push([
@@ -58,33 +57,31 @@ function customerView() {
 };
 
 function idSearch() {
-    return inquirer.prompt([
-        {
-            name: 'id',
-            message: 'Enter the ID:',
-            validate: function (value) {
-                if (isNaN(value) === false && parseInt(value) > 0 && parseInt(value) <= 10) {
-                    return true;
-                }
-                console.log("\n")
-                cli.print(cli.box("\n" + chalk.red.bold(" ID Must be a number")+"\n" ));
-                console.log("\n")
-                return false;
+    return inquirer.prompt([{
+        name: 'id',
+        message: 'Enter the ID:',
+        validate: function (value) {
+            if (isNaN(value) === false && parseInt(value) > 0 && parseInt(value) <= 1000) {
+                return true;
             }
-        }, {
-            name: 'stock_quantity',
-            message: 'Enter the Quantity:',
-            validate: function (value) {
-                if (isNaN(value) === false && parseInt(value) > 0 && parseInt(value) <= 10) {
-                    return true;
-                }
-                console.log("\n")
-                cli.print(cli.box("\n" + chalk.red.bold(" Quantity Must be a number") + "\n"));
-                console.log("\n")
-                return false;
-            }
+            console.log("\n")
+            cli.print(cli.box("\n" + chalk.red.bold(" ID Must be a number") + "\n"));
+            console.log("\n")
+            return false;
         }
-    ]).then(function (answers) {
+    }, {
+        name: 'stock_quantity',
+        message: 'Enter the Quantity:',
+        validate: function (value) {
+            if (isNaN(value) === false && parseInt(value) > 0 && parseInt(value) <= 1000) {
+                return true;
+            }
+            console.log("\n")
+            cli.print(cli.box("\n" + chalk.red.bold(" Quantity Must be a number") + "\n"));
+            console.log("\n")
+            return false;
+        }
+    }]).then(function (answers) {
         return new Promise(resolve => connection.query("SELECT * FROM products WHERE ?", {
             id: answers.id
         }, function (err, res) {
@@ -97,23 +94,18 @@ function idSearch() {
 function updateProduct(answers, res) {
     var oldStock = res[0].stock_quantity // 10
     var newStock = oldStock - answers.stock_quantity;
-    // 10 - 10 = 0
-    // console.log(productInfo);
     if (newStock < 0) {
-        cli.print(cli.box("\n" + chalk.red.bold("\n" + "Insufficient quantity!" + "\n")));
+        cli.print(cli.box(chalk.red.bold("Insufficient quantity!\n Product not updated \n Returing to CUSTOMER MENU")) + "\n");
         return emptyPromise();
     } else {
-        return new Promise(resolve => connection.query("UPDATE products SET ? WHERE ?", [
-            {
-                stock_quantity: newStock
-            }, {
-                id: answers.id
-            }
-        ], function (err, res) {
+        return new Promise(resolve => connection.query("UPDATE products SET ? WHERE ?", [{
+            stock_quantity: newStock
+        }, {
+            id: answers.id
+        }], function (err, res) {
             ifThrow(err);
-            console.log(res.affectedRows + " product updated!\n");
-            productInfo = []
-            resolve();
+            cli.print(cli.box(cli.center(chalk.green.bold("Product updated!\n Returning to CUSTOMER MENU"))) + "\n");
+                customerView().then(()=>resolve());
         }));
     };
 };

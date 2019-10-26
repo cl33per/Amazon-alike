@@ -8,9 +8,7 @@ function managerPortal() {
     return inquirer.prompt({
             name: "action",
             type: "list",
-            message: chalk.blue(
-                "WELCOME TO THE CUSTOMER VIEW. \nChoose a option below:"
-            ),
+        message: cli.print(cli.box(cli.center(chalk.yellow.bold("Welcome to the Amazon-alike: \nCUSTOMER MENU."))) + "\n"),
             choices: [
                 "View Products for Sale",
                 "View Low Inventory",
@@ -100,7 +98,7 @@ function idSearch() {
             name: 'id',
             message: 'Enter the ID:',
             validate: function (value) {
-                if (isNaN(value) === false && parseInt(value) > 0 && parseInt(value) <= 10) {
+                if (isNaN(value) === false && parseInt(value) > 0 && parseInt(value) <= 10000) {
                     return true;
                 }
                 console.log("\n")
@@ -112,7 +110,7 @@ function idSearch() {
             name: 'stock_quantity',
             message: 'Enter the Quantity:',
             validate: function (value) {
-                if (isNaN(value) === false && parseInt(value) > 0 && parseInt(value) <= 10) {
+                if (isNaN(value) === false && parseInt(value) > 0 && parseInt(value) <= 10000) {
                     return true;
                 }
                 console.log("\n")
@@ -132,8 +130,9 @@ function idSearch() {
 };
 
 function updateProduct(answers, res) {
-    var newStock = answers.stock_quantity;
-
+    var oldStock = res[0].stock_quantity; // 10
+    var newStock = answers.stock_quantity + oldStock;
+    console.log(newStock)
         return new Promise(resolve => connection.query("UPDATE products SET ? WHERE ?", [
             {
                 stock_quantity: newStock
@@ -162,7 +161,7 @@ function createProduct() {
             name: "price",
             message: "What's the price of the product?",
             validate: function (value) {
-                if (isNaN(value) === false && parseInt(value) > 0 && parseInt(value) <= 100) {
+                if (isNaN(value) === false && parseInt(value) > 0 && parseInt(value) <= 10000) {
                     return true;
                 }
                 console.log("\n")
@@ -175,7 +174,7 @@ function createProduct() {
             name: "stock",
             message: "What's the quanity?",
             validate: function (value) {
-                if (isNaN(value) === false && parseInt(value) > 0 && parseInt(value) <= 100) {
+                if (isNaN(value) === false && parseInt(value) > 0 && parseInt(value) <= 10000) {
                     return true;
                 }
                 console.log("\n")
@@ -197,9 +196,9 @@ function createProduct() {
         }, function (err) {
             ifThrow(err);
             console.log("\n");
-            cli.print(cli.box("\n" + answer.item + chalk.green(" Sucessfully Added") + "\n"));
+                cli.print(cli.box(answer.item + chalk.green(" \n Sucessfully Added \n Returing to MANAGER MENU"))) + "\n";
             console.log("\n");
-            resolve()
+            resolve()   
         }));
     });
 };
