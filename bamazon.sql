@@ -12,3 +12,7 @@ CREATE TABLE products (
   price DECIMAL(10,2) NULL,
   stock_quantity INT NULL
 );
+
+
+SELECT id AS department_id
+FROM products;
