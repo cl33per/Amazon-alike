@@ -32,7 +32,7 @@ function customerView() {
         ifThrow(err);
 
         // Log all results of the SELECT statement. By interating through this cleans the data for the cli.table package
-        for (var i = 0; i < res.length; i++) { // console.log(res[i].id);
+        for (var i = 0; i < res.length; i++) {
             productInfo.push([
                 res[i].id,
                 res[i].product_name,
@@ -49,7 +49,9 @@ function customerView() {
             ...productInfo
         ];
         // Prints the inventory in a table format.
+        console.log("\n")
         cli.print(cli.table(rows) + "\n");
+        console.log("\n")
         productInfo = []
         resolve();
     }));
@@ -64,7 +66,9 @@ function idSearch() {
                 if (isNaN(value) === false && parseInt(value) > 0 && parseInt(value) <= 10) {
                     return true;
                 }
-                console.log(chalk.red.bold(" ID Must be a number"));
+                console.log("\n")
+                cli.print(cli.box("\n" + chalk.red.bold(" ID Must be a number")+"\n" ));
+                console.log("\n")
                 return false;
             }
         }, {
@@ -74,7 +78,9 @@ function idSearch() {
                 if (isNaN(value) === false && parseInt(value) > 0 && parseInt(value) <= 10) {
                     return true;
                 }
-                console.log(chalk.red.bold(" Quantity Must be a number"));
+                console.log("\n")
+                cli.print(cli.box("\n" + chalk.red.bold(" Quantity Must be a number") + "\n"));
+                console.log("\n")
                 return false;
             }
         }
@@ -94,7 +100,7 @@ function updateProduct(answers, res) {
     // 10 - 10 = 0
     // console.log(productInfo);
     if (newStock < 0) {
-        console.log(chalk.red.bold("\n" + "Insufficient quantity!" + "\n"));
+        cli.print(cli.box("\n" + chalk.red.bold("\n" + "Insufficient quantity!" + "\n")));
         return emptyPromise();
     } else {
         return new Promise(resolve => connection.query("UPDATE products SET ? WHERE ?", [

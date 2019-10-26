@@ -33,17 +33,9 @@ function mainMenu() {
             case "Customer View":
                 return inventoryPortal().then(mainMenu);
             case "Manager View":
-                return mainMenu();
+                return mangerPortal().then(mainMenu);
             case "Supervisor View":
                 return mainMenu();
-
-            case "Customer View": inventoryPortal(connection, mainMenu);
-                break;
-            case "Manager View": mangerPortal(connection, mainMenu);
-                break;
-            case "Supervisor View": mainMenu(connection);
-                break;
-
             case "Exit":
                 process.exit();
             default:
@@ -61,10 +53,8 @@ function ifThrow(err) {
         throw err;
     }
 }
-
 // Start the fucntion to start the primary memu of the amazaon-alike interface
 module.exports = mainMenu;
-
 // Global variables to make life fun
 global.connection = connection;
 global.mainMenu = mainMenu;
