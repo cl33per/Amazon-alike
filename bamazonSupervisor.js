@@ -61,9 +61,9 @@ function salesByDepartment(){
             productInfo.push([
                 res[i].department_id,
                 res[i].department_name,
-                "$" + res[i].over_head_costs,
-                "$" + res[i].product_sales,
-                "$"+ totalProfit
+                "$ " + res[i].over_head_costs,
+                "$ " + res[i].product_sales,
+                "$ "+ totalProfit
             ]);
         };
         // Defines the columns and rows of the table
