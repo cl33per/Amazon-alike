@@ -8,7 +8,7 @@ function managerPortal() {
     return inquirer.prompt({
             name: "action",
             type: "list",
-        message: cli.print(cli.box(cli.center(chalk.yellow.bold("Welcome to the Amazon-alike: \nCUSTOMER MENU."))) + "\n"),
+        message: cli.print(cli.box(cli.center(chalk.yellow.bold("Welcome to the Amazon-alike: \MANAGER MENU."))) + "\n"),
             choices: [
                 "View Products for Sale",
                 "View Low Inventory",
@@ -130,9 +130,9 @@ function idSearch() {
 };
 
 function updateProduct(answers, res) {
-    var oldStock = res[0].stock_quantity; // 10
-    var newStock = answers.stock_quantity + oldStock;
-    console.log(newStock)
+    var oldStock = res[0].stock_quantity;
+    var newStock = parseInt(answers.stock_quantity) + parseInt(oldStock);
+    var productName = res[0].product_name;
         return new Promise(resolve => connection.query("UPDATE products SET ? WHERE ?", [
             {
                 stock_quantity: newStock
@@ -141,7 +141,8 @@ function updateProduct(answers, res) {
             }
         ], function (err, res) {
             ifThrow(err);
-            console.log(res.affectedRows + " product updated!\n");
+                cli.print(cli.box(chalk.blue("Product: " + productName + " Old QTY: " + oldStock + " New QTY: " + newStock)) + "\n");
+                cli.print(cli.box(chalk.green("Sucessfully Updated! Returing to MANAGER MENU")) + "\n");
             productInfo = []
             resolve();
         }));
@@ -178,7 +179,7 @@ function createProduct() {
                     return true;
                 }
                 console.log("\n")
-                cli.print(cli.box("\n" + chalk.red.bold(" stock Must be a number") + "\n"));
+                cli.print(cli.box("\n" + chalk.red.bold(" Stock Must be a number") + "\n"));
                 console.log("\n")
                 return false;
             }
@@ -189,10 +190,6 @@ function createProduct() {
             department_name: answer.department,
             price: answer.price,
             stock_quantity: answer.stock
-            // product_name: "rocky 1995",
-            // department_name: "movies",
-            // price: 5.95,
-            // stock_quantity: 3,
         }, function (err) {
             ifThrow(err);
             console.log("\n");

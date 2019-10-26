@@ -15,23 +15,6 @@ The start of the Amazon-like opens with three menu selection
 `Supervisor View`
 `Exit`
 
-```mermaid
-graph LR
-A[Main Menu] --> B(Customer View)
-A --> C(Manager View)
-A --> D(Supervisor View)
-A --> Z(Exit Program)
-B-->E(View Availble Prodcuts)
-B-->F(Place an Order)
-B-->G(Exit Submenu)
-C-->E
-C-->I(View Low Inventory)
-C-->J(Add Inventory)
-C-->G
-D-->K(View Product Sales by Department)
-D-->L(Create New Department)
-D-->G(Exit Submenu)
-```
 
 ### Packages Used 
 mysql

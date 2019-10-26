@@ -60,3 +60,4 @@ function salesByDepartment(){
 function createNewDepartment(){
 
 };
+module.exports = supervisorPortal;

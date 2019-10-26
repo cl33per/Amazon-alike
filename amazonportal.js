@@ -1,5 +1,6 @@
 var inventoryPortal = require('./bamazonCustomer.js')
 var mangerPortal = require("./bamazonManager.js")
+var supervisorPortal = require("./bamazonSupervisor")
 var mysql = require('mysql');
 var inquirer = require('inquirer');
 var cli = require('pixl-cli');
