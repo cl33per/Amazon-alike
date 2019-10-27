@@ -10,7 +10,7 @@
 Amazon-like is made to utilize MySQL, and node's inquirer package and take in orders from customers and deplete stock from the store's inventory. Amazaon-like can also track product sales across the store's departments and then provide a summary of the highest-grossing departments in the store.
 
 The start of the Amazon-like opens with three menu selection 
-
+![Customer View](demo/MainMenu.png)
 ### Packages Used 
 mysql
 pixl-cli
