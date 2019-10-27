@@ -11,6 +11,7 @@ Amazon-like is made to utilize MySQL, and node's inquirer package and take in or
 
 The start of the Amazon-like opens with three menu selection 
 `Customer View`
+(demo/CustomerView.png)
 `Manager View`
 `Supervisor View`
 `Exit`

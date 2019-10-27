@@ -57,13 +57,14 @@ function salesByDepartment(){
         ifThrow(err);
         // Log all results of the SELECT statement. By interating through this cleans the data for the cli.table package
         for (var i = 0; i < res.length; i++) {
-            var totalProfit = res[i].product_sales- res[i].over_head_costs;
+            var totalProfit = res[i].product_sales - res[i].over_head_costs;
+            var totalProfitFix = totalProfit.toFixed(2)
             productInfo.push([
                 res[i].department_id,
                 res[i].department_name,
                 "$ " + res[i].over_head_costs,
                 "$ " + res[i].product_sales,
-                "$ "+ totalProfit
+                "$ " + totalProfitFix
             ]);
         };
         // Defines the columns and rows of the table
