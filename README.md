@@ -11,17 +11,13 @@ Amazon-like is made to utilize MySQL, and node's inquirer package and take in or
 
 The start of the Amazon-like opens with three menu selection 
 ![Customer View](demo/MainMenu.png)
-### Packages Used 
-mysql
-pixl-cli
-chalk
-inquirer
 
 ### Importnat before running
 
 Before running the program you need to install the packages. Specififcly mysql and inquirer. 
-Running `npm i` should do the trick!
-Then simply upload the sql scritps and import the product_data.csv and dfepartment_data.csv provided and can your own local enviorment
+Running `npm i` should do the trick! Then simply upload the sql scritps and import the product_data.csv and dfepartment_data.csv provided and can your own local enviorment.
+
+Enjoy!
 
 ### Customer View
 ![Customer View](demo/CustomerView.png)
