@@ -10,7 +10,6 @@
 Amazon-like is made to utilize MySQL, and node's inquirer package and take in orders from customers and deplete stock from the store's inventory. Amazaon-like can also track product sales across the store's departments and then provide a summary of the highest-grossing departments in the store.
 
 The start of the Amazon-like opens with three menu selection 
-![Main Menu](demo/CustomerView.png)
 
 ### Packages Used 
 mysql
@@ -25,25 +24,22 @@ Running `npm i` should do the trick!
 Then simply upload the sql scritps and import the product_data.csv and dfepartment_data.csv provided and can your own local enviorment
 
 ### Customer View
-`Customer View`
 ![Customer View](demo/CustomerView.png)
-![Customer View](demo/ViewProductCustomer.png)
-![Customer View](demo/PlaceAnOrderpng)
-![Customer View](demo/.png)
+![Customer View](demo/ViewProductsCustomer.png)
+![Customer View](demo/PlaceAnOrder.png)
+
 
 
 ### Manager View
-`Manager View`
-![Customer View](demo/ManagerMain.png)
-![Customer View](demo/ManagerProduct.png)
-![Customer View](demo/ManagerLowInvetory.png)
+![Customer View](demo/ManageMain.png)
+![Customer View](demo/ManagerNewProduct.png)
+![Customer View](demo/ManagerLowInventory.png)
 ![Customer View](demo/ManagerAddInventory.png)
 
 ### Supervisor View
-`Supervisor View`
 ![Customer View](demo/SupervisorMenu.png)
 ![Customer View](demo/SalesDepartment.png)
-![Customer View](demo/NewDepatment.png)
+![Customer View](demo/NewDepartment.png)
 
 ## Bugs and feature requests
 Have a bug or a feature request? [please open a new issue](https://github.com/cl33per/Amazon-like/issues/new)
