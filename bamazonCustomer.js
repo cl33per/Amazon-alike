@@ -97,7 +97,7 @@ function updateProduct(answers, res) {
     var productSales = answers.stock_quantity * res[0].price;
 
     if (newStock < 0) {
-        cli.print(cli.box(chalk.red.bold("Insufficient quantity!\n Product not updated \n Returing to CUSTOMER MENU")) + "\n");
+        cli.print(cli.box(chalk.red.bold("Insufficient quantity! Product not updated... Returing to CUSTOMER MENU")) + "\n");
         return emptyPromise();
     } else {
         return new Promise(resolve => connection.query("UPDATE products SET ? WHERE ?", [{
@@ -107,7 +107,7 @@ function updateProduct(answers, res) {
             id: answers.id
         }], function (err, res) {
             ifThrow(err);
-            cli.print(cli.box(cli.center(chalk.green.bold("Product updated!\n Returning to CUSTOMER MENU"))) + "\n");
+            cli.print(cli.box(cli.center(chalk.green.bold("ID: "+ answers.id +" Updated! Returning to CUSTOMER MENU"))) + "\n");
                 customerView().then(()=>resolve());
         }));
     };

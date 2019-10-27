@@ -8,7 +8,7 @@ function managerPortal() {
     return inquirer.prompt({
             name: "action",
             type: "list",
-        message: cli.print(cli.box(cli.center(chalk.yellow.bold("Welcome to the Amazon-alike: \MANAGER MENU."))) + "\n"),
+        message: cli.print(cli.box(cli.center(chalk.blue.bold("Welcome to the Amazon-alike: \MANAGER MENU."))) + "\n"),
             choices: [
                 "View Products for Sale",
                 "View Low Inventory",
@@ -218,9 +218,8 @@ function createProduct() {
         }, function (err) {
             ifThrow(err);
             console.log("\n");
-                cli.print(cli.box(answer.item + chalk.green(" \n Sucessfully Added \n Returing to MANAGER MENU"))) + "\n";
-            console.log("\n");
-            resolve()   
+                cli.print(cli.box(chalk.green("Product: " + answer.item + " QTY: " + answer.stock+" Sucessfully Added! Returing to MANAGER MENU")) + "\n");
+                inventoryView().then(() => resolve());   
         }));
     });
 };
