@@ -25,7 +25,7 @@ function mainMenu() {
     return inquirer.prompt({
         name: "action",
         type: "list",
-        message: cli.print(cli.box(cli.center(chalk.red.bold("Welcome to the Amazon-like: \nMAIN MENU."))) + "\n"),
+        message: cli.print(cli.box(cli.center(chalk.red.bold("Welcome to the Amazon-Alike: \nMAIN MENU."))) + "\n"),
         choices: ["Customer View", "Manager View", "Supervisor View", "Exit"]
     }).then(function (answer) {
         switch (answer.action) {
@@ -53,7 +53,7 @@ function ifThrow(err) {
         throw err;
     }
 }
-// Start the fucntion to start the primary memu of the amazaon-like interface
+// Start the fucntion to start the primary memu of the amazaon-Alike interface
 module.exports = mainMenu;
 // Global variables to make life fun
 global.connection = connection;

@@ -8,7 +8,7 @@ function managerPortal() {
     return inquirer.prompt({
             name: "action",
             type: "list",
-        message: cli.print(cli.box(cli.center(chalk.blue.bold("Welcome to the Amazon-like: \MANAGER MENU."))) + "\n"),
+        message: cli.print(cli.box(cli.center(chalk.blue.bold("Welcome to the Amazon-Alike: \MANAGER MENU."))) + "\n"),
             choices: [
                 "View Products for Sale",
                 "View Low Inventory",

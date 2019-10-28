@@ -9,7 +9,7 @@ function inventoryPortal() {
     return inquirer.prompt({
         name: "action",
         type: "list",
-        message: cli.print(cli.box(cli.center(chalk.blue.bold("Welcome to the Amazon-like: \nCUSTOMER MENU."))) + "\n"),
+        message: cli.print(cli.box(cli.center(chalk.blue.bold("Welcome to the Amazon-Alike: \nCUSTOMER MENU."))) + "\n"),
         choices: ["View Availible Products", "Place an Order", "Exit Submenu"]
     }).then(function (answer) {
         switch (answer.action) {
