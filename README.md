@@ -9,13 +9,13 @@
 
 Amazon-like is made to utilize MySQL, and node's inquirer package and take in orders from customers and deplete stock from the store's inventory. Amazon-like can also track product sales across the store's departments and then provide a summary of the highest-grossing departments in the store.
 
-The start of the Amazon-like opens with three menu selection 
+The start of the Amazon-like opens with three menu selections 
 ![Customer View](demo/MainMenu.png)
 
 ### Important before running
 
 Before running the program, you need to install the packages.
-Running `npm i` should do the trick! Then upload the SQL scripts and import the product_data.csv and dfepartment_data.csv provided and can your local environment.
+Running `npm i` should do the trick! Then upload the SQL scripts and import the product_data.csv and department_data.csv provided to your local environment.
 Enjoy!
 
 ### Customer View
