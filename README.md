@@ -1,15 +1,15 @@
-# Amazon-like
+# Amazon-Alike
 ![GitHub followers](https://img.shields.io/github/followers/cl33per?style=social)
-[![GitHub issues](https://img.shields.io/github/issues/cl33per/Amazon-like)](https://github.com/cl33per/Amazon-like/issues)
-[![GitHub](https://img.shields.io/github/license/cl33per/Amazon-like)](https://img.shields.io/github/license/cl33per/Amazon-like)
-![GitHub top language](https://img.shields.io/github/languages/top/cl33per/Amazon-like)
-![GitHub last commit](https://img.shields.io/github/last-commit/cl33per/Amazon-like)
+[![GitHub issues](https://img.shields.io/github/issues/cl33per/Amazon-Alike)](https://github.com/cl33per/Amazon-Alike/issues)
+[![GitHub](https://img.shields.io/github/license/cl33per/Amazon-Alike)](https://img.shields.io/github/license/cl33per/Amazon-Alike)
+![GitHub top language](https://img.shields.io/github/languages/top/cl33per/Amazon-Alike)
+![GitHub last commit](https://img.shields.io/github/last-commit/cl33per/Amazon-Alike)
 
 ### Summary
 
-Amazon-like is made to utilize MySQL, and node's inquirer package and take in orders from customers and deplete stock from the store's inventory. Amazon-like can also track product sales across the store's departments and then provide a summary of the highest-grossing departments in the store.
+Amazon-Alike is made to utilize MySQL, and node's inquirer package and take in orders from customers and deplete stock from the store's inventory. Amazon-Alike can also track product sales across the store's departments and then provide a summary of the highest-grossing departments in the store.
 
-The start of the Amazon-like opens with three menu selections 
+The start of the Amazon-Alike opens with three menu selections 
 ![Customer View](demo/MainMenu.png)
 
 ### Important before running
@@ -37,5 +37,5 @@ Enjoy!
 ![Customer View](demo/NewDepartment.png)
 
 ## Bugs and feature requests
-Have a bug or a feature request? [please open a new issue](https://github.com/cl33per/Amazon-like/issues/new)
+Have a bug or a feature request? [please open a new issue](https://github.com/cl33per/Amazon-Alike/issues/new)
   
