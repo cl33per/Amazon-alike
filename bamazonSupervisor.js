@@ -6,7 +6,7 @@ function supervisorPortal() {
     return inquirer.prompt({
         name: "action",
         type: "list",
-        message: cli.print(cli.box(cli.center(chalk.yellow.bold("Welcome to the Amazon-alike: \nSUPERVISOR MENU."))) + "\n"),
+        message: cli.print(cli.box(cli.center(chalk.yellow.bold("Welcome to the Amazon-like: \nSUPERVISOR MENU."))) + "\n"),
         choices: [
             "View Product Sales by Department",
             "Create New Department",
